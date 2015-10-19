@@ -10,8 +10,9 @@ function parse() {
 
 	data.open('GET', url, true);
 	data.send();
+}
 
-	function format(arr) {
+function format(arr) {
 	var output = "<ul>";
 	var i;
 	for (i=0; i < arr.length; i++) {
@@ -20,5 +21,4 @@ function parse() {
 	}
 	output+="</ul>";
 	document.getElementById("messages").innerHTML = output;
-	}
 }
