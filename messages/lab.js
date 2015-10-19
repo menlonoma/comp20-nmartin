@@ -1,13 +1,24 @@
 function parse() {
 	var data = new XMLHttpRequest();
-	data.overrideMimeType("application/json");
-	data.open('GET', 'data.json', true);
+	var url = :"data.json";
+	data.onreadystatechange = function() {
+		if (data.readyState == 4 && data.status == 200) {
+			var myArr = json.parse(data.responseText);
+			format(myArr);
+		}
+	}
 
+	data.open('GET', url, true);
+	data.send();
+
+	function format(arr) {
 	var output = "<ul>";
-	for (var i in data.id) {
+	var i;
+	for (i=0; i < arr.length; i++) {
 		output+="<li>" + data.id[i].content + " " + 
 										data.id[i].username + "</li>";
 	}
 	output+="</ul>";
 	document.getElementById("messages").innerHTML = output;
+	}
 }
