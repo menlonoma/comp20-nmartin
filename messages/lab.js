@@ -3,7 +3,7 @@ function parse() {
 	var url = "data.json";
 	data.onreadystatechange = function() {
 		if (data.readyState == 4 && data.status == 200) {
-			var myArr = json.parse(data.responseText);
+			var myArr = JSON.parse(data.responseText);
 			format(myArr);
 		}
 	}
