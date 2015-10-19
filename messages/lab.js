@@ -1,6 +1,6 @@
 function parse() {
 	var data = new XMLHttpRequest();
-	var url = :"data.json";
+	var url = "data.json";
 	data.onreadystatechange = function() {
 		if (data.readyState == 4 && data.status == 200) {
 			var myArr = json.parse(data.responseText);
@@ -16,7 +16,7 @@ function parse() {
 	var i;
 	for (i=0; i < arr.length; i++) {
 		output+="<li>" + arr[i].content + " " + 
-										arr[i].username + "</li>";
+		     arr[i].username + "</li>";
 	}
 	output+="</ul>";
 	document.getElementById("messages").innerHTML = output;
