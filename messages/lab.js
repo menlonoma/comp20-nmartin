@@ -15,8 +15,8 @@ function parse() {
 	var output = "<ul>";
 	var i;
 	for (i=0; i < arr.length; i++) {
-		output+="<li>" + data.id[i].content + " " + 
-										data.id[i].username + "</li>";
+		output+="<li>" + arr[i].content + " " + 
+										arr[i].username + "</li>";
 	}
 	output+="</ul>";
 	document.getElementById("messages").innerHTML = output;
