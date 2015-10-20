@@ -1,6 +1,6 @@
 function parse() {
 	var data = new XMLHttpRequest();
-	var url = "data.json";
+	var url = "http://messagehub.herokuapp.com/messages.json";
 	data.onreadystatechange = function() {
 		if (data.readyState == 4 && data.status == 200) {
 			var myArr = JSON.parse(data.responseText);
