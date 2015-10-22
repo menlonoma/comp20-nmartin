@@ -7,4 +7,4 @@ Nolan Martin -- 10.21.15
 
 3. I have spent approximately 1.5 hours on this assignment.
 
-4. Additional question: It appears that both of these actions are possible because the <script> tag does not obey the same origin policy. Can't say I'm terribly confident but would love to learn the right answer.
+4. Additional question: It appears that both of these actions are possible because the script tag does not obey the same origin policy. Can't say I'm terribly confident but would love to learn the right answer.
