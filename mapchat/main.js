@@ -52,22 +52,34 @@ function create (data, iter) {
 		var lng = data[iter].lng;
 		var lat = data[iter].lat;
 		var landmark = new google.maps.LatLng(lat, lng);
+		if (data[iter].login == "CalvinGraham") {
 			icon = new google.maps.Marker({
-			position: landmark, map: map, title: data[iter].login
-		});
-		icon.setMap(map);
-		contentString = data[iter].login + "<p>" + data[iter].message + "</p>" + "<p>" + "Distance: " + distance(lat, lng) + " miles away" + "</p>";
-  		var infowindow = new google.maps.InfoWindow({
-  			content: contentString
-  		});
-
-  		google.maps.event.addListener(icon, 'click', function() {
-  		if(prev_infowindow) {
-  			prev_infowindow.close();
+				position: landmark, map: map, title: data[iter].login,
+				icon: "arrow.png"
+			});
+			icon.setMap(map);
+			contentString = data[iter].login;
+	  		var infowindow = new google.maps.InfoWindow({
+	  			content: contentString
+	  		});
   		}
-  		prev_infowindow = infowindow;
-    	infowindow.open(map, this);
-  		});
+  		else {
+			icon = new google.maps.Marker({
+				position: landmark, map: map, title: data[iter].login
+			});
+			icon.setMap(map);
+			contentString = data[iter].login + "<p>" + data[iter].message + "</p>" + "<p>" + "Distance: " + distance(lat, lng) + " miles away" + "</p>";
+	  		var infowindow = new google.maps.InfoWindow({
+	  			content: contentString
+	  		});
+		}
+	  		google.maps.event.addListener(icon, 'click', function() {
+	  		if(prev_infowindow) {
+	  			prev_infowindow.close();
+	  		}
+	  		prev_infowindow = infowindow;
+	    	infowindow.open(map, this);
+	  		});
 }
 
 function distance (lat, lng) {
