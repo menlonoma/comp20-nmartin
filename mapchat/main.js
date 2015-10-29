@@ -23,7 +23,7 @@ function sendLoc(position) {
 			position.coords.longitude);
 		map.panTo(myLocation);
 		var login = "CalvinGraham";
-		var message = "Hello";
+		var message = "The rent is too damn high";
 
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", "https://secret-about-box.herokuapp.com/sendLocation", true);
