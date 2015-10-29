@@ -16,3 +16,17 @@ body {
 	height: 100%;
 	width: 100%;
 }
+
+h1 {
+  z-index: 100;
+  position: absolute;
+  color: red;
+  font-size: 3em;
+  font-weight: bold;
+  left: 20em;
+  top: 0.02em;
+}
+
+#login {
+	font-weight: bold;
+}
