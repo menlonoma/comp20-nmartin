@@ -17,6 +17,8 @@ function init() {
 		}
 }
 
+var prev_infowindow = false;
+
 function sendLoc(position) {
 		// Move to new location
 		myLocation = new google.maps.LatLng(position.coords.latitude, 
@@ -24,7 +26,22 @@ function sendLoc(position) {
 		map.panTo(myLocation);
 		var login = "CalvinGraham";
 		var message = "The rent is too damn high";
-
+		icon = new google.maps.Marker({
+				position: myLocation, map: map, title: login,
+				icon: "arrow.png"
+		});
+		icon.setMap(map);
+		contentString = "<div id=login>" + login;
+	  	var infowindow = new google.maps.InfoWindow({
+	  			content: contentString
+	  	});
+	  	google.maps.event.addListener(icon, 'click', function() {
+	  	if(prev_infowindow) {
+	 		prev_infowindow.close();
+	  	}
+	  	prev_infowindow = infowindow;
+	   	infowindow.open(map, this);
+	 	});
 		var xhr = new XMLHttpRequest();
 		xhr.open("POST", "https://secret-about-box.herokuapp.com/sendLocation", true);
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -45,44 +62,29 @@ function format (data) {
 	}
 }
 
-var prev_infowindow = false;
 
 function create (data, iter) {
 		var lng = data[iter].lng;
 		var lat = data[iter].lat;
 		var landmark = new google.maps.LatLng(lat, lng);
-		//if this is users data
-		if (data[iter].login == "CalvinGraham") {
-			icon = new google.maps.Marker({
-				position: landmark, map: map, title: data[iter].login,
-				icon: "arrow.png"
-			});
-			icon.setMap(map);
-			contentString = "<div id=login>" + data[iter].login;
-	  		var infowindow = new google.maps.InfoWindow({
-	  			content: contentString
-	  		});
-  		}
-  		//all other data
-  		else {
-			icon = new google.maps.Marker({
-				position: landmark, map: map, title: data[iter].login
-			});
-			icon.setMap(map);
-			contentString = "<div id=login>" + data[iter].login + "</div>" + 
-			"<p>" + data[iter].message + "</p>" + "<p>" + "Distance: " + 
-			distance(lat, lng) + " miles away" + "</p>";
-	  		var infowindow = new google.maps.InfoWindow({
-	  			content: contentString
-	  		});
-		}
-	  		google.maps.event.addListener(icon, 'click', function() {
-	  		if(prev_infowindow) {
-	  			prev_infowindow.close();
-	  		}
-	  		prev_infowindow = infowindow;
-	    	infowindow.open(map, this);
-	  		});
+		
+		icon = new google.maps.Marker({
+			position: landmark, map: map, title: data[iter].login
+		});
+		icon.setMap(map);
+		contentString = "<div id=login>" + data[iter].login + "</div>" + 
+		"<p>" + data[iter].message + "</p>" + "<p>" + "Distance: " + 
+		distance(lat, lng) + " miles away" + "</p>";
+	  	var infowindow = new google.maps.InfoWindow({
+	  		content: contentString
+	  	});
+	  	google.maps.event.addListener(icon, 'click', function() {
+	  	if(prev_infowindow) {
+	 		prev_infowindow.close();
+	  	}
+	  	prev_infowindow = infowindow;
+	   	infowindow.open(map, this);
+	 	});
 }
 
 function distance (lat, lng) {
