@@ -43,7 +43,7 @@ function sendLoc(position) {
 	   	infowindow.open(map, this);
 	 	});
 		var xhr = new XMLHttpRequest();
-		xhr.open("POST", "https://secret-about-box.herokuapp.com/sendLocation", true);
+		xhr.open("POST", "https://fast-citadel-5360.herokuapp.com/sendLocation", true);
 		xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 		xhr.send("login=" + login + "&lat=" + position.coords.latitude + "&lng=" + 
 			position.coords.longitude + "&message=" + message);
