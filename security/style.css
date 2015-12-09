@@ -1,0 +1,16 @@
+body {
+font-family: Fraktur;
+font-size: 18px;
+line-height: 1.6;
+background-color: #FFF;
+padding: 30px;
+    padding-top: 30px;
+    padding-right: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+}
+
+.codesnip {
+	background-color: #000000;
+	color: #F8F8F8;
+}
